@@ -1,8 +1,10 @@
 import React from 'react'
 import { AppContext } from './App'
 import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 export default function Cart() {
     const { cart, setCart,email } = useContext(AppContext);
+    const Navigate = useNavigate();
 
     const increment = () => {
         setCart({ ...cart, qty: cart.qty + 1 });
@@ -13,6 +15,9 @@ export default function Cart() {
             cart.qty > 0 && setCart({ ...cart, qty: cart.qty - 1 });
         }
     };
+    const returntologin = () => {
+        Navigate("/login");
+    }
 
     return (
         <div>
@@ -35,7 +40,7 @@ export default function Cart() {
            
            <hr/>
            <p>
-            {email? ( <button >Place Order</button>):(<button> Login to Order</button>)}
+            {email? ( <button >Place Order</button>):(<button onClick={returntologin}> Login to Order</button>)}
            
            
            </p>
