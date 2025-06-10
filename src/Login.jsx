@@ -14,7 +14,7 @@ export default function Login() {
     if (!found) {
       setError("Access Denied");
     } else {
-      setEmail(user.email); // Assuming setEmail is available in context
+      setEmail(user.email); 
       Navigate("/");
     }
   };

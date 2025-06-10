@@ -6,7 +6,7 @@ export default function Logout() {
 
     const {email,} = useContext(AppContext);
     const Navigate = useNavigate();
-  return (
-    <div>Logout</div>
-  )
+    navigate="/login"
+  return 
+  
 }
