@@ -6,10 +6,10 @@ import { useContext } from "react";
 
 
 export default function Home() {
-  const { setCart } = useContext(AppContext); // Access setCart from AppContext
+  const { setCart,email } = useContext(AppContext); // Access setCart from AppContext
   const Navigate = useNavigate();
   const buynow = (obj) => {
-    setCart({id:obj.id, name: obj.name, price: obj.price, desc:obj.desc,  qty:1,}); // Set the cart with the product details
+    setCart({id:obj.id, name: obj.name, price: obj.price, desc:obj.desc,email : email,  qty:1,}); // Set the cart with the product details
     Navigate("/cart");
    
   };
@@ -20,6 +20,7 @@ export default function Home() {
       desc: "This is the description of the product",
       price: 45,
       imgUrl: "https://picsum.photos/id/1/300/300",
+      
     },
     {
       id: 2,
