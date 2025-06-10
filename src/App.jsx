@@ -6,6 +6,7 @@ import Header from "./Header";
 import Footer from "./Foter";
 import Login from "./Login";
 import Register from "./Register";
+import Cart from "./Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 export const AppContext = createContext()  // context variable like global variable , can access by any component becasue used export keyword
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </BrowserRouter>

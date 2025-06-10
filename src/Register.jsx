@@ -36,6 +36,7 @@ export default function Register() {
       </p>
       <p>
         <button onClick={handleSubmit}>Submit</button>
+        
       </p>
       <hr />
       <p>
