@@ -14,10 +14,12 @@ export const AppContext = createContext()  // context variable like global varia
 function App() {
   // const [user, setUser] = useState({}); // create a context by using hook , attach these 2 vairables to app , in such a way it can access
   const [users,setUsers] = useState([]);// to store an array of elemt
+const [cart,setCart] = useState([]); // to store an array of elemt
+const [email,setEmail] = useState(); // to store an email
 
   return (
     <div>
-     <AppContext.Provider value={{users,setUsers}}>     {/* //variable available for child component */}
+     <AppContext.Provider value={{users,setUsers,cart,setCart,email,setEmail}}>     {/* //variable available for child component */}
       <BrowserRouter>
         <Header name="mu-react-store" />
         <Routes>
