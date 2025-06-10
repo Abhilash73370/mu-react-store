@@ -1,12 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState , useContext} from "react";
+import { AppContext } from "./App";
 export default function Register() {
-  const [user, setUser] = useState({});
+  const[user,setUser] = useState({});//created it locally to extraxct 
+ const {users,setUsers} = useContext(AppContext); 
   const [count, setCount] = useState(0);
   const [a, setA] = useState(0);
   const [b, setB] = useState(0);
   const [result, setResult] = useState();
+
+  const handleSubmit = () =>{
+    setUsers([...users,user]);
+    console.log(users)
+
+  };
   const handleClick = () => {
     alert("Hello World");
   };
@@ -42,8 +50,10 @@ export default function Register() {
         />
       </p>
       <p>
-        <button>Submit</button>
+        <button onClick={handleSubmit}>Submit</button>
       </p>
+
+      
       <hr />
       <p>
         <Link to="/login">Aready a member? Login Here...</Link>
