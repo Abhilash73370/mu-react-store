@@ -1,12 +1,11 @@
-import React from 'react'
-import { useContext } from 'react'
-import { AppContext } from './App'  
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import App, { AppContext } from "./App";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 export default function Logout() {
-
-    const {email,} = useContext(AppContext);
-    const Navigate = useNavigate();
-    navigate="/login"
-  return 
-  
+  const { email, setEmail } = useContext(AppContext);
+  const Navigate = useNavigate()
+  setEmail(null);
+  Navigate("/")
+  return <div>Logout</div>;
 }

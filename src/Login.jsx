@@ -6,7 +6,7 @@ export default function Login() {
   const [user, setUser] = useState({});
   const [error, setError] = useState();
   const Navigate = useNavigate();
-  const { users,setEmail } = useContext(AppContext);  // Accessing users and setEmail from context
+  const { users,setEmail } = useContext(AppContext);
   const handleSubmit = () => {
     const found = users.find(
       (elem) => elem.email === user.email && elem.pass === user.pass
@@ -14,7 +14,7 @@ export default function Login() {
     if (!found) {
       setError("Access Denied");
     } else {
-      setEmail(user.email); 
+      setEmail(user.email)
       Navigate("/");
     }
   };
