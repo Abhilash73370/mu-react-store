@@ -2,12 +2,22 @@ import React from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AppContext } from "./App";
+import { useRef } from "react";
 export default function Register() {
   const [user, setUser] = useState({});
   const Navigate = useNavigate()
   const { users, setUsers } = useContext(AppContext);
+const nameRef = useRef();
+const emailRef = useRef();
+const passRef = useRef();
+
   const handleSubmit = () => {
-    setUsers([...users, user]);
+    const user = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      pass: passRef.current.value,
+    }
+    setUsers([...users, userObj]);
     Navigate("/login")
   };
   return (
@@ -16,21 +26,24 @@ export default function Register() {
       <p>
         <input
           type="text"
+          ref={nameRef}
           placeholder="Enter Name"
-          onChange={(e) => setUser({ ...user, name: e.target.value })}
+          // onChange={(e) => setUser({ ...user, name: e.target.value })}
         />
       </p>
       <p>
         <input
           type="text"
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          ref={emailRef}
+          // onChange={(e) => setUser({ ...user, email: e.target.value })}
           placeholder="Enter Email Address"
         />
       </p>
       <p>
         <input
           type="password"
-          onChange={(e) => setUser({ ...user, pass: e.target.value })}
+          ref={passRef}
+          // onChange={(e) => setUser({ ...user, pass: e.target.value })}
           placeholder="New Password"
         />
       </p>
