@@ -1,7 +1,7 @@
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
 
-import { createRoot } from 'react-dom/client' // virtual createroot is created 
-import './index.css'
-import App from './App.jsx'
 import { registerSW } from 'virtual:pwa-register';
 
 const updateSW = registerSW({
@@ -15,10 +15,4 @@ const updateSW = registerSW({
   }
 });
 
-
-
-createRoot(document.getElementById('root')).render(<App/>); 
-
-
-
-// pointing to physical div elemts and making a copy of it and in that it is rendering app components.
+createRoot(document.getElementById("root")).render(<App />);

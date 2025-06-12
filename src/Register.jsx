@@ -1,24 +1,27 @@
 import React from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AppContext } from "./App";
 import { useRef } from "react";
+import axios from "axios";
 export default function Register() {
   const [user, setUser] = useState({});
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
   const { users, setUsers } = useContext(AppContext);
-const nameRef = useRef();
-const emailRef = useRef();
-const passRef = useRef();
-
-  const handleSubmit = () => {
-    const user = {
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const passRef = useRef();
+  const handleSubmit = async() => {
+    const userObj = {
       name: nameRef.current.value,
       email: emailRef.current.value,
       pass: passRef.current.value,
-    }
+    };
+    // setUsers([...users, user]);
     setUsers([...users, userObj]);
-    Navigate("/login")
+    await axios.post("http://localhost:8080/users", userObj)
+    
+    Navigate("/login");
   };
   return (
     <div>
@@ -26,8 +29,8 @@ const passRef = useRef();
       <p>
         <input
           type="text"
-          ref={nameRef}
           placeholder="Enter Name"
+          ref={nameRef}
           // onChange={(e) => setUser({ ...user, name: e.target.value })}
         />
       </p>
@@ -49,7 +52,6 @@ const passRef = useRef();
       </p>
       <p>
         <button onClick={handleSubmit}>Submit</button>
-        
       </p>
       <hr />
       <p>

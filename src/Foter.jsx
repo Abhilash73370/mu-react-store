@@ -1,8 +1,8 @@
 import React from 'react'
 import "./Foter.css"
-export default function Footer() {
+export default function Foter() {
   return (
-    <div className="App-Foter-Row">
+    <div className="App-Footer-Row">
       $copy; 2025. All rights reserved.
     </div>
   )

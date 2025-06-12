@@ -1,34 +1,27 @@
-import React from "react";
-import "./Home.css";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import { AppContext } from "./App";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+
 export default function Home() {
-  const {cart,setCart,email} = useContext(AppContext)
-  const products = [
-    {
-      id: 1,
-      name: "Product 1",
-      desc: "This is the description of the product",
-      price: 45,
-      imgUrl: "https://picsum.photos/id/1/300/300",
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      desc: "This is the description of the product",
-      price: 50,
-      imgUrl: "https://picsum.photos/id/2/300/300",
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      desc: "This is the description of the product",
-      price: 75,
-      imgUrl: "https://picsum.photos/id/3/300/300",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState("");
+  const { setCart, email } = useContext(AppContext);
   const Navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const url = "http://localhost:8080/users";
+        const res = await axios.get(url);
+        setProducts(res.data);
+      } catch (err) {
+        setError("Failed to fetch products");
+      }
+    };
+    fetchProducts();
+  }, []);
+
   const buyNow = (obj) => {
     setCart({
       id: obj.id,
@@ -36,14 +29,16 @@ export default function Home() {
       price: obj.price,
       desc: obj.desc,
       qty: 1,
-      email:email,
+      email: email,
     });
     Navigate("/cart");
   };
+
   return (
     <div className="App-Home-Row">
+      {error && <div style={{ color: "red" }}>{error}</div>}
       {products.map((product) => (
-        <div>
+        <div key={product.id}>
           <img src={product.imgUrl} alt={product.name} />
           <h2>{product.name}</h2>
           <p>{product.desc}</p>
